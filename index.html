@@ -38,6 +38,9 @@
       align-items:center;
       justify-content:center;
       padding:22px;
+      background-size: 200% 200%;
+      /*gradient drift to background */
+      animation: gradientMove 18s ease infinite;
     }
 
     /* subtle grain (launch-microsite vibe) */
@@ -51,14 +54,20 @@
       opacity:.35;
     }
 
-    .wrap{width:min(1040px,100%);}
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .wrap{width:min(1200px,95%);}
     h1{
       margin:0;
-      font-size:30px;
+      font-size:42px;
       letter-spacing:-0.04em;
       line-height:1.05;
     }
-    .sub{margin-top:6px; color:var(--muted); font-size:13px}
+    .sub{margin-top:8px; color:var(--muted); font-size:18px}
 
     /* top-right help chip */
     .chip{
@@ -75,10 +84,10 @@
     /* main container */
     .card{
       border-radius: var(--r);
-      padding:18px;
+      padding:40px;
       background: var(--surface);
       backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.2);
       box-shadow: var(--shadow);
       position:relative;
       overflow:hidden;
@@ -97,23 +106,33 @@
       pointer-events:none;
     }
 
-    .titleLg{font-size:22px; font-weight:900; letter-spacing:-0.03em}
-    .titleSm{font-size:13px; color:rgba(16,24,40,0.60)}
+    .titleLg{font-size:32px; font-weight:900; letter-spacing:-0.03em}
+    .titleSm{font-size:16px; color:rgba(16,24,40,0.60)}
 
     /* Tim avatar */
     .avatar{
-      width:56px;height:56px;border-radius:20px;
+      width:180px;height:180px;border-radius:36px;
+      flex-shrink: 0;
       border:1px solid rgba(16,24,40,0.10);
       background: rgba(255,255,255,0.9);
       box-shadow: 0 12px 30px rgba(16,24,40,0.10);
       overflow:hidden;
     }
     .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .avatar img { animation: timFloat 4s ease-in-out infinite; }
+    @keyframes timFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+      100% { transform: translateY(0px); }
+    }
 
+    /* Add shimmer to "Start Mission" button */
     /* info boxes */
     .box, .pill, .bigCenter{
       border:1px solid rgba(16,24,40,0.10);
       background: rgba(255,255,255,0.70);
+          background-size: 200% 200%; /* shimmer to background*/
+    animation: buttonShimmer 6s linear infinite;
       backdrop-filter: blur(14px);
       border-radius: 24px;
     }
@@ -121,16 +140,23 @@
     .pill{padding:9px 11px; font-size:13px; color:rgba(16,24,40,0.65)}
     .pill strong{color:rgba(16,24,40,0.92)}
 
+    @keyframes buttonShimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: -200% center; }
+    }
+
     /* buttons = Material-ish */
     button{
       border:0;
       border-radius: 999px;
-      padding:12px 16px;
+      padding:16px 28px;
       font-weight:900;
+      font-size: 16px;
       cursor:pointer;
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease, filter .12s ease;
     }
     button:hover{
+      background: rgba(16,24,40,0.06);
       box-shadow: 0 12px 30px rgba(16,24,40,0.10);
       transform: translateY(-1px);
     }
@@ -141,6 +167,7 @@
 
     .primary{
       background: var(--blue);
+
       color: white;
       box-shadow: 0 10px 24px rgba(26,115,232,0.25);
     }
@@ -236,7 +263,7 @@
       100% { opacity: 0; }
     }
 
-    .row{display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; position:relative;}
+    .row{display:flex; gap:40px; flex-wrap:wrap; align-items:center; justify-content: center; position:relative;}
     .col{flex:1 1 360px;}
 
     .bigCenter{
@@ -285,7 +312,7 @@
 
     /* Smooth entry for content */
     .animate-enter {
-      animation: fadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+      animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(16px) scale(0.985); filter: blur(10px); }
@@ -338,6 +365,27 @@
       pointer-events: none; opacity: 0; z-index: 9998;
       transition: opacity 0.4s ease;
     }
+
+    /* Stepper UI and animation styles*/
+    .stepper {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 20px;
+    }
+    .step-item { display: flex; align-items: center; gap: 6px; }
+
+    .step-dot {
+    
+      width: 8px; height: 8px; border-radius: 50%; background: var(--border);
+      transition: all 0.3s ease;
+    }
+    .step-active .step-dot {
+      background: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+      transform: scale(1.1);
+    }
+
+     /* Add hover delight on "Start Mission" button.*/
+    .step-active { color: var(--ink); }
   </style>
 </head>
 <body>
@@ -354,6 +402,9 @@
     </header>
 
     <div class="card" id="screen"></div>
+
+    
+
     <div class="footer">Built with questionable cat supervision.</div>
   </div>
 
@@ -527,16 +578,24 @@
   }
 
   function renderIntro() {
+    // Random greeting
+    const greetings = ["Hi.", "Oh, you’re here.", "I allowed this visit.", "Greetings.", "Tim is ready."];
+    const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+    // Contextual help chip
+    const chip = document.querySelector(".chip");
+    if(chip) chip.innerHTML = "<div>3 short missions.</div><div>~1 minute total.</div>";
+
     screenEl.innerHTML = `
       <div class="row animate-enter">
         <div class="avatar">
           <img src="tim-assets/stand.png" alt="Tim" />
         </div>
         <div class="col">
-          <div class="titleLg">Hi.</div>
+          <div class="titleLg">${greeting}</div>
           <div style="margin-top:6px; line-height:1.55; color:var(--muted)">
             I’m Tim. I need your help with a <b style="color:var(--ink)">very important mission</b>.
-            <div style="margin-top:6px;">(Also I was promised treats if I do this correctly.)</div>
+            <div style="margin-top:6px; font-size:14px; opacity:0.8;">(Also I was promised treats if I do this correctly.)</div>
           </div>
 
           <div class="box" style="margin-top:20px;">
@@ -548,9 +607,26 @@
             </div>
           </div>
 
-          <div class="hud" style="margin-top:24px;">
-            <div class="pill"><strong>Mission:</strong> Treat Run → Spring Sprint → Heart Run → Reveal</div>
-            <div class="btns">
+          <div class="hud" style="margin-top:24px; display:block;">
+
+
+            <!-- Visual Stepper -->
+            <div class="stepper">
+              <div class="step-item step-active"><span class="step-dot"></span>🐟 Treat</div>
+              <div class="step-item"><span class="step-dot"></span>🌀 Spring</div>
+              <div class="step-item"><span class="step-dot"></span>❤️ Heart</div>
+              <div class="step-item"><span class="step-dot"></span>✨ Reveal</div>
+            </div>
+
+            <!-- Anticipation Copy -->
+            <div style="text-align:center; margin-bottom:16px; font-size:14px; color:var(--ink); font-weight:500;">
+              Tim has prepared 3 missions for you.<br/>
+              <span style="color:var(--muted); font-weight:400;">He is watching carefully.</span>
+            </div>
+
+           
+
+            <div class="btns" style="justify-content:center;">
               <button class="primary" id="startBtn">Start Mission</button>
             </div>
           </div>
@@ -558,6 +634,7 @@
       </div>
     `;
     document.getElementById("startBtn").onclick = () => {
+      if(chip) chip.innerHTML = "<div>Tap / Click / Space = jump</div><div>R = restart level</div>";
       goToBrief(0);
     };
   }
@@ -606,8 +683,8 @@
           <div class="titleLg" style="margin-top:4px;">${escapeHtml(level.title)}</div>
 
           <div class="box" style="margin-top:16px;">
-            <div style="display:flex; gap:14px; align-items:flex-start;">
-              <div style="font-size:44px; line-height:1; margin-top:2px;">
+            <div style="display:flex; gap:20px; align-items:flex-start;">
+              <div style="font-size:64px; line-height:1; margin-top:2px; flex-shrink:0;">
                 <span class="${demoClass}">${level.collectibleEmoji}</span>
               </div>
               <div style="flex:1;">
@@ -654,8 +731,8 @@
             I approve. Reluctantly.
           </div>
 
-            <div style="color:var(--muted); font-size:18px;">So…</div>
-            <h2 style="font-size:48px; margin-top:12px;">Will you be my Valentine?</h2>
+            <div style="color:var(--muted); font-size:20px; margin-top: 24px;">So…</div>
+            <h2 style="font-size:56px; margin-top:12px; line-height:1.1;">Will you be my Valentine?</h2>
             <div class="btns paw-cursor" style="justify-content:center; margin-top:24px; padding:20px;">
               <button class="primary" id="yesBtn" style="font-size:20px; padding:16px 32px;">YES!! ❤️</button>
               <button class="ghost" id="yes2Btn" style="font-size:20px; padding:16px 32px;">Obviously YES!! 😼</button>
@@ -786,9 +863,9 @@
       <div class="bigCenter relative animate-enter" style="padding:24px; overflow:hidden;">
         ${dots}
         <div>
-          <img src="tim-assets/celebrate.png" alt="Tim celebrate" style="width:160px;height:160px;border-radius:24px;background:var(--surface);object-fit:cover;" />
+          <img src="tim-assets/celebrate.png" alt="Tim celebrate" style="width:320px;height:320px;border-radius:40px;background:var(--surface);object-fit:cover;" />
         </div>
-        <div style="margin-top:10px; font-size:44px;">🧸</div>
+        <div style="margin-top:24px; font-size:80px;">🧸</div>
         <div class="muted" style="margin-top:6px;">(Tim has secured the teddy. Sleep mode unlocked.)</div>
         <div class="titleLg" style="margin-top:10px;">Correct answer.</div>
         <div style="margin-top:8px; color:var(--muted)">
@@ -835,7 +912,7 @@
       </div>
 
       <div class="canvasWrap" style="margin-top:12px;">
-        <canvas id="gameCanvas" width="900" height="420"></canvas>
+        <canvas id="gameCanvas" width="1200" height="520"></canvas>
       </div>
 
       <div class="hud">
@@ -890,7 +967,7 @@
     const h = Math.max(1, rect.height);
 
     // groundY relative to height so it scales nicely
-    const groundY = Math.round(h * 0.79);
+    const groundY = Math.round(h * 0.82);
 
     state = {
       level,
@@ -904,7 +981,7 @@
       wonTriggered: false,
       entities: [],
       lastSpawn: 0,
-      tim: { x: w * 0.155, y: groundY - 64, w: 64, h: 64, vy: 0, onGround: true }, // bigger sprite size
+      tim: { x: w * 0.15, y: groundY - 80, w: 80, h: 80, vy: 0, onGround: true }, // Slightly smaller for better playability
     };
 
     state.nextCommentIdx = 0;
@@ -921,7 +998,7 @@
   function onJump() {
     if (!state || state.status !== "playing") return;
     if (!state.tim.onGround) return;
-    state.tim.vy = -12.0;
+    state.tim.vy = -15.5; // Tuned jump force
     state.tim.onGround = false;
   }
 
@@ -935,11 +1012,11 @@
     const x = state.width + 40;
 
     const y = isObstacle
-      ? state.groundY - 34
-      : clamp(state.groundY - 155 + rand() * 115, 80, state.groundY - 60);
+      ? state.groundY - 44
+      : clamp(state.groundY - 180 + rand() * 120, 80, state.groundY - 80);
 
-    const w = isObstacle ? 34 : 24;
-    const h = isObstacle ? 34 : 24;
+    const w = isObstacle ? 44 : 38; // Reduced hitboxes slightly
+    const h = isObstacle ? 44 : 38;
 
     state.entities.push({
       id: `${t}-${Math.random().toString(16).slice(2)}`,
@@ -967,7 +1044,7 @@
     if (state.status === "playing") {
       spawnEntity(t);
 
-      const g = 0.55;
+      const g = 0.65; // Floatier gravity to make jumping easier
       state.tim.vy += g;
       state.tim.y += state.tim.vy;
 
@@ -1157,7 +1234,7 @@
       ctx.rotate(rot);
       ctx.scale(scale, scale);
 
-      ctx.font = `${isObs ? 30 : 28}px ui-sans-serif, system-ui`;
+      ctx.font = `${isObs ? 48 : 42}px ui-sans-serif, system-ui`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(emoji, 0, bob);
