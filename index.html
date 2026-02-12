@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tim Mission</title>
+  <title>Chunnu Mission</title>
   <style>
     /* --- Google-launch-ish theme overrides --- */
     :root{
@@ -392,12 +392,12 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Tim Annual Hooman Performance Review</h1>
-        <div class="sub">Evaluation cycle initiated. Managed by Tim.</div>
+        <h1>Chunnu's Annual Hooman Performance Review</h1>
+        <div class="sub">Evaluation cycle initiated. Managed by Chunnu.</div>
       </div>
       <div class="chip">
         <div>Review Cycle: FY2026</div>
-        <div>Reviewer: Tim</div>
+        <div>Reviewer: Chunnu</div>
       </div>
     </header>
 
@@ -445,7 +445,7 @@
         { at: 5, text: "Competency rating upgraded to 'functional'." },
         { at: 8, text: "Food delivery protocols within tolerance." },
       ],
-      failHint: "Vacuum detected. Tim does not negotiate with vacuums.",
+      failHint: "Vacuum detected. Chunnu does not negotiate with vacuums.",
     },
     {
       id: "spring",
@@ -464,7 +464,7 @@
         { at: 8, text: "Retrieval efficiency: High." },
         { at: 9, text: "Assessment complete. Data logged." },
       ],
-      failHint: "You lost a spring. Tim filed a complaint with HR (Hooman Resources).",
+      failHint: "You lost a spring. Chunnu filed a complaint with HR (Hooman Resources).",
     },
     {
       id: "heart",
@@ -483,7 +483,7 @@
         { at: 8, text: "Positive emotional influence confirmed." },
         { at: 10, text: "Calculating final score..." },
       ],
-      failHint: "Rain. Tragic. Tim is personally offended.",
+      failHint: "Rain. Tragic. Chunnu is personally offended.",
     },
   ];
 
@@ -591,7 +591,7 @@
     screenEl.innerHTML = `
       <div class="row animate-enter">
         <div class="avatar">
-          <img src="tim-assets/stand.png" alt="Tim" />
+          <img src="tim-assets/stand.png" alt="Chunnu" />
         </div>
         <div class="col">
           <div class="titleLg">${greeting}</div>
@@ -623,7 +623,7 @@
 
             <!-- Anticipation Copy -->
             <div style="text-align:center; margin-bottom:16px; font-size:14px; color:var(--ink); font-weight:500;">
-              Tim has prepared 3 evaluation modules.<br/>
+              Chunnu has prepared 3 evaluation modules.<br/>
               <span style="color:var(--muted); font-weight:400;">He is watching closely.</span>
             </div>
 
@@ -643,13 +643,13 @@
   }
 
   function renderLoading() {
-    const msgs = ["Analyzing performance metrics...", "Generating evaluation report...", "Consulting with senior leadership (Tim)...", "Calibrating cuteness sensors..."];
+    const msgs = ["Analyzing performance metrics...", "Generating evaluation report...", "Consulting with senior leadership (Chunnu)...", "Calibrating cuteness sensors..."];
     const msg = msgs[Math.floor(Math.random() * msgs.length)];
     
     screenEl.innerHTML = `
       <div class="bigCenter relative animate-enter" style="padding:40px; text-align:center;">
         <div class="avatar" style="margin:0 auto 24px auto; width:120px; height:120px;">
-          <img src="tim-assets/stand.png" alt="Tim" />
+          <img src="tim-assets/stand.png" alt="Chunnu" />
         </div>
         <div class="titleLg" style="margin-bottom:16px;">Processing...</div>
         <div class="sub" id="loadingText">${msg}</div>
@@ -698,7 +698,7 @@
     const b = briefCopy[level.id] || {
       line1: "Next evaluation incoming.",
       line2: "Collect good stuff. Avoid bad stuff.",
-      tip: "Pro tip: Tim is watching.",
+      tip: "Pro tip: Chunnu is watching.",
     };
 
     // small animated “demo” emoji in the card
@@ -710,7 +710,7 @@
     screenEl.innerHTML = `
       <div class="row animate-enter">
         <div class="avatar">
-          <img src="tim-assets/stand.png" alt="Tim" />
+          <img src="tim-assets/stand.png" alt="Chunnu" />
         </div>
         <div class="col">
           <div class="titleSm">Next Module</div>
@@ -754,7 +754,7 @@
     screenEl.innerHTML = `
       <div class="bigCenter relative animate-enter" style="padding:32px;">
         <div class="avatar" style="margin:0 auto 24px auto;">
-          <img src="tim-assets/stand.png" alt="Tim" />
+          <img src="tim-assets/stand.png" alt="Chunnu" />
         </div>
         <div class="titleLg">Performance Review Summary</div>
         <div class="sub" style="margin-bottom:24px;">FY2026 Evaluation Cycle</div>
@@ -792,13 +792,13 @@
     screenEl.innerHTML = `
       <div class="row animate-enter">
         <div class="avatar">
-          <img src="tim-assets/stand.png" alt="Tim" />
+          <img src="tim-assets/stand.png" alt="Chunnu" />
         </div>
         <div class="col">
           <div class="titleLg" style="font-size:32px;">Evaluation Complete.</div>
           <div style="margin-top:6px; line-height:1.55; color:var(--muted); font-size:18px;">
             Metrics analyzed. Performance exceeds expectations.<br/>
-            Management (Tim) has prepared a formal offer.<br/>
+            Management (Chunnu) has prepared a formal offer.<br/>
             I approve. Reluctantly.
           </div>
 
@@ -813,7 +813,7 @@
           </div>
         </div>
       </div>
-      <img id="angryPop" class="angry-pop" src="tim-assets/angry.png" alt="Angry Tim"/>
+      <img id="angryPop" class="angry-pop" src="tim-assets/angry.png" alt="Angry Chunnu"/>
       <div id="redOverlay"></div>
     `;
     document.getElementById("yesBtn").onclick = () => setScreen({ kind: "accepted" });
@@ -892,7 +892,7 @@
           <img src="tim-assets/angry.png" class="overlayTim" style="width:120px;height:120px;border-radius:26px;" />
           <div class="titleLg" style="margin-top:10px;">Nice try.</div>
           <div class="muted" style="margin-top:8px; line-height:1.55">
-            Tim does not accept “No”.<br/>
+             Chunnu does not accept “No”.<br/>
             Restart the missions and try again without bullying the button.
           </div>
           <div class="btns" style="justify-content:center; margin-top:18px;">
@@ -934,21 +934,21 @@
       <div class="bigCenter relative animate-enter" style="padding:24px; overflow:hidden;">
         ${dots}
         <div>
-          <img src="tim-assets/celebrate.png" alt="Tim celebrate" style="width:320px;height:320px;border-radius:40px;background:var(--surface);object-fit:cover;" />
+          <img src="tim-assets/celebrate.png" alt="Chunnu celebrate" style="width:320px;height:320px;border-radius:40px;background:var(--surface);object-fit:cover;" />
         </div>
         <div style="margin-top:24px; font-size:80px;">🧸</div>
-        <div class="muted" style="margin-top:6px;">(Tim has secured the teddy. Sleep mode unlocked.)</div>
+        <div class="muted" style="margin-top:6px;">(Chunnu has secured the teddy. Sleep mode unlocked.)</div>
         <div class="titleLg" style="margin-top:10px;">Offer Accepted.</div>
         <div style="margin-top:8px; color:var(--muted)">
-          HR (Tim) has processed your paperwork.
+          HR (Chunnu) has processed your paperwork.
         </div>
 
         <div class="box" style="margin:16px auto 0; max-width:520px; text-align:left;">
-          <div style="font-weight:500; color:var(--ink)">Next Steps</div>
+          <div style="font-weight:500; color:var(--ink)">Additional Benefits Unlocked</div>
           <div style="margin-top:6px; line-height:1.55; color:var(--muted)">
-            • TREATS for TIM!!! 
-            • Then whatever date you wanna plan..<br/>
-            • Tim will bring his teddy 🧸 because that is non-negotiable.<br/>
+            • Unlimited Chunnu cuddles<br/>
+            • Shared teddy access privileges<br/>
+            • Future date scheduling rights
           </div>
         </div>
 
@@ -1334,7 +1334,7 @@
     ctx.globalAlpha = 1;
 
     // Comment bubble + progress
-    if (state.comment) drawBubble(16, 16, 560, 66, "TIM", state.comment);
+    if (state.comment) drawBubble(16, 16, 560, 66, "Chunnu", state.comment);
     drawProgress(16, height - 26, 280, 10, state.score / Math.max(1, L.target));
 
     // Draw Tim with “juice”
@@ -1350,7 +1350,7 @@
         ctx.fillRect(0,0,width,height);
         drawCenterCardWithTim(
           "Assessment Failed",
-          L.failHint || "Tim has logged this as ‘skill issue’.",
+          L.failHint || "Chunnu has logged this as ‘skill issue’.",
           "Tap / Space to jump • R to reset",
           TimSprites.angry
         );
@@ -1359,7 +1359,7 @@
         ctx.fillRect(0,0,width,height);
         drawCenterCardWithTim(
           "Evaluation Complete",
-          "Tim approves. Metrics logged.",
+          "Chunnu approves. Metrics logged.",
           "Click Next level to continue",
           TimSprites.stand
         );
