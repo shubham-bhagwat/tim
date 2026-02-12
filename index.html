@@ -940,8 +940,6 @@
     const onResize = () => {
       if (!canvas || !ctx) return;
       setupCanvasForDPR(canvas, ctx);
-      // re-init level to match new dimensions, keep same score maybe (simpler reset)
-      resetLevel();
     };
     window.addEventListener("resize", onResize);
     // Store listener to remove later if needed, or just rely on closure if stopLoop handles it
@@ -961,10 +959,9 @@
   }
 
   function initLevel(level) {
-    // Use canvas visible size (CSS pixels)
-    const rect = canvas.getBoundingClientRect();
-    const w = Math.max(1, rect.width);
-    const h = Math.max(1, rect.height);
+    // Use fixed logical size for consistent gameplay across devices
+    const w = 1200;
+    const h = 520;
 
     // groundY relative to height so it scales nicely
     const groundY = Math.round(h * 0.82);
@@ -1143,6 +1140,13 @@
   function drawFrame() {
     const { width, height, groundY, level: L } = state;
 
+    // Calculate scale based on actual canvas display width vs logical game width
+    const rect = canvas.getBoundingClientRect();
+    const scale = rect.width / width;
+
+    ctx.save();
+    ctx.scale(scale, scale);
+
     // camera shake
     let dx=0, dy=0;
     if (shake.t > 0) {
@@ -1151,7 +1155,6 @@
       shake.t -= 1;
       shake.mag *= 0.92;
     }
-    ctx.save();
     ctx.translate(dx, dy);
 
     // background gradient
